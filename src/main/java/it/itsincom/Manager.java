@@ -8,18 +8,18 @@ public class Manager extends Dipendenti{
     private String riferimento;
 
     //Costruttore
-    public Manager(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String settore,
-            String riferimento) {
-        super(codiceFiscale, nome, cognome, dataAssunzione);
-        this.settore = settore;
-        this.riferimento = riferimento;
+    public Manager(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String categoria,
+        String settore, String riferimento) {
+            super(codiceFiscale, nome, cognome, dataAssunzione, categoria);
+            this.settore = settore;
+            this.riferimento = riferimento;
     }
 
     //Getter e Setter
     public String getSettore() {
         return settore;
     }
-
+    
     public void setSettore(String settore) {
         this.settore = settore;
     }

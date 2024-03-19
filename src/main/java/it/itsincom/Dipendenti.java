@@ -9,13 +9,15 @@ public class Dipendenti {
     private String cognome;
     private LocalDate dataAssunzione;
     private int stipendio;
+    private String categoria;
     
 
-    public Dipendenti(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione) {
+    public Dipendenti(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String categoria) {
         this.codiceFiscale = codiceFiscale;
         this.nome = nome;
         this.cognome = cognome;
         this.dataAssunzione = dataAssunzione;
+        this.categoria = categoria;
     }
 
     //Getter e Setter
@@ -59,11 +61,19 @@ public class Dipendenti {
         this.stipendio = stipendio;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     //Metodo ToString
     @Override
     public String toString() {
         return "Dipendenti [codiceFiscale=" + codiceFiscale + ", nome=" + nome + ", cognome=" + cognome
-                + ", dataAssunzione=" + dataAssunzione + ", stipendio=" + stipendio + "]";
+                + ", dataAssunzione=" + dataAssunzione + ", stipendio=" + stipendio + ", categoria=" + categoria + "]";
     }
     
 }

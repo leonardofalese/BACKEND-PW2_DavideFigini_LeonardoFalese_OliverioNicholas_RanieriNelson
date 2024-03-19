@@ -8,8 +8,7 @@ public class Azienda {
     private ArrayList<Dipendenti> dipendenti;
 
     //Costruttore
-    public Azienda(String nomeAzienda, ArrayList<Dipendenti> dipendenti) {
-        this.nomeAzienda = nomeAzienda;
+    public Azienda(ArrayList<Dipendenti> dipendenti) {
         this.dipendenti = new ArrayList<>();
     }
 

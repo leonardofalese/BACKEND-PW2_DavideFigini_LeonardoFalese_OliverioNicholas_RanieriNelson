@@ -8,13 +8,13 @@ public class Tecnici extends Dipendenti{
     private String riferimento;
 
     //Costruttore
-    public Tecnici(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String ambito,
-            String riferimento) {
-        super(codiceFiscale, nome, cognome, dataAssunzione);
-        this.ambito = ambito;
-        this.riferimento = riferimento;
+    public Tecnici(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String categoria,
+        String ambito, String riferimento) {
+            super(codiceFiscale, nome, cognome, dataAssunzione, categoria);
+            this.ambito = ambito;
+            this.riferimento = riferimento;
     }
-
+    
     //Getter e Setter
     public String getAmbito() {
         return ambito;
@@ -32,10 +32,10 @@ public class Tecnici extends Dipendenti{
         this.riferimento = riferimento;
     }
 
+    //Metodo ToString
     @Override
     public String toString() {
         return "Tecnici [ambito=" + ambito + ", riferimento=" + riferimento + "]";
     }
 
-  
 }
