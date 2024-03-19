@@ -3,21 +3,21 @@ package it.itsincom;
 import java.time.LocalDate;
 
 //Inizializzazione parametri
-public class Dipendenti {                                                              
+public class Dipendenti {    
+    private String categoria;                                                          
     private String codiceFiscale;
     private String nome;
     private String cognome;
     private LocalDate dataAssunzione;
     private int stipendio;
-    private String categoria;
     
 
-    public Dipendenti(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String categoria) {
+    public Dipendenti(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione) {
+        this.categoria = categoria;
         this.codiceFiscale = codiceFiscale;
         this.nome = nome;
         this.cognome = cognome;
         this.dataAssunzione = dataAssunzione;
-        this.categoria = categoria;
     }
 
     //Getter e Setter
@@ -72,8 +72,49 @@ public class Dipendenti {
     //Metodo ToString
     @Override
     public String toString() {
-        return "Dipendenti [codiceFiscale=" + codiceFiscale + ", nome=" + nome + ", cognome=" + cognome
-                + ", dataAssunzione=" + dataAssunzione + ", stipendio=" + stipendio + ", categoria=" + categoria + "]";
+        return "\n[categoria=" + categoria + ", codiceFiscale=" + codiceFiscale + ", nome=" + nome
+                + ", cognome=" + cognome + ", dataAssunzione=" + dataAssunzione + ", stipendio=" + stipendio;
     }
     
+
+    //Metodo Equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Dipendenti other = (Dipendenti) obj;
+        if (categoria == null) {
+            if (other.categoria != null)
+                return false;
+        } else if (!categoria.equals(other.categoria))
+            return false;
+        if (codiceFiscale == null) {
+            if (other.codiceFiscale != null)
+                return false;
+        } else if (!codiceFiscale.equals(other.codiceFiscale))
+            return false;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (cognome == null) {
+            if (other.cognome != null)
+                return false;
+        } else if (!cognome.equals(other.cognome))
+            return false;
+        if (dataAssunzione == null) {
+            if (other.dataAssunzione != null)
+                return false;
+        } else if (!dataAssunzione.equals(other.dataAssunzione))
+            return false;
+        if (stipendio != other.stipendio)
+            return false;
+        return true;
+    }
+
 }

@@ -3,23 +3,23 @@ package it.itsincom;
 import java.time.LocalDate;
 
 //Inizializzazione parametri
-public class Manager extends Dipendenti{
-    private String settore;
+public class Manager extends Dipendenti {
     private String riferimento;
+    private String settore;
 
     //Costruttore
-    public Manager(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String categoria,
-        String settore, String riferimento) {
-            super(codiceFiscale, nome, cognome, dataAssunzione, categoria);
-            this.settore = settore;
+    public Manager(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione,
+        String riferimento, String settore) {
+            super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
             this.riferimento = riferimento;
+            this.settore = settore;
     }
 
     //Getter e Setter
     public String getSettore() {
         return settore;
     }
-    
+
     public void setSettore(String settore) {
         this.settore = settore;
     }
@@ -35,7 +35,30 @@ public class Manager extends Dipendenti{
     //Metodo ToString
     @Override
     public String toString() {
-        return "Manager [settore=" + settore + ", riferimento=" + riferimento + "]";
+        return super.toString() + ", settore=" + settore + ", riferimento=" + riferimento + "]";
+    }
+
+    //Metodo Equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Manager other = (Manager) obj;
+        if (riferimento == null) {
+            if (other.riferimento != null)
+                return false;
+        } else if (!riferimento.equals(other.riferimento))
+            return false;
+        if (settore == null) {
+            if (other.settore != null)
+                return false;
+        } else if (!settore.equals(other.settore))
+            return false;
+        return true;
     }
 
 }

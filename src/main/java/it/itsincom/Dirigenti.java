@@ -7,9 +7,9 @@ public class Dirigenti extends Dipendenti {
     private String nomeDivisione;
 
     //Costuttore
-    public Dirigenti(String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String categoria,
+    public Dirigenti(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione,
         String nomeDivisione) {
-            super(codiceFiscale, nome, cognome, dataAssunzione, categoria);
+            super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
             this.nomeDivisione = nomeDivisione;
     }
     
@@ -25,7 +25,25 @@ public class Dirigenti extends Dipendenti {
     //MetodoToString
     @Override
     public String toString() {
-        return "Diregenti [nomeDivisione=" + nomeDivisione + "]";
+        return super.toString() + ", nomeDivisione=" + nomeDivisione + "]";
     }
-    
+
+    //Metodo Equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Dirigenti other = (Dirigenti) obj;
+        if (nomeDivisione == null) {
+            if (other.nomeDivisione != null)
+                return false;
+        } else if (!nomeDivisione.equals(other.nomeDivisione))
+            return false;
+        return true;
+    }
+     
 }

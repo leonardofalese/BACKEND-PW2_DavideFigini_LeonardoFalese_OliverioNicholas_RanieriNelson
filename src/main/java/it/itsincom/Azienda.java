@@ -9,7 +9,7 @@ public class Azienda {
 
     //Costruttore
     public Azienda(ArrayList<Dipendenti> dipendenti) {
-        this.dipendenti = new ArrayList<>();
+        this.dipendenti = dipendenti;
     }
 
     //Getter e Setter
@@ -28,7 +28,30 @@ public class Azienda {
     //Metodo ToString
     @Override
     public String toString() {
-        return "Azienda [nomeAzienda=" + nomeAzienda + ", dipendenti=" + dipendenti + "]";
+        return "Azienda [nome dell'azienda=" + nomeAzienda + " \nDipendenti=" + dipendenti + "]";
     }
- 
+
+    //Metodo Equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Azienda other = (Azienda) obj;
+        if (nomeAzienda == null) {
+            if (other.nomeAzienda != null)
+                return false;
+        } else if (!nomeAzienda.equals(other.nomeAzienda))
+            return false;
+        if (dipendenti == null) {
+            if (other.dipendenti != null)
+                return false;
+        } else if (!dipendenti.equals(other.dipendenti))
+            return false;
+        return true;
+    }
+
 }
