@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public final class Main {
@@ -24,6 +25,10 @@ public final class Main {
                 dipendenti.add(new Tecnici(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5], pezzi[6]));
             } 
         }
+        System.out.print("////Lettura file////");
+        System.out.println(azienda.toString());
+        Collections.sort(azienda.getDipendenti());
+        System.out.print("////Ordine alfabetico dei dipendenti per cognome////");
         System.out.println(azienda.toString());
 
         in.close();

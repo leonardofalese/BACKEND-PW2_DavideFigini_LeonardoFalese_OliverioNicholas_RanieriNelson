@@ -28,7 +28,7 @@ public class Azienda {
     //Metodo ToString
     @Override
     public String toString() {
-        return "Azienda [nome dell'azienda=" + nomeAzienda + " \nDipendenti=" + dipendenti + "]";
+        return "\nAzienda [nome dell'azienda=" + nomeAzienda + " \nDipendenti=" + dipendenti + "]\n";
     }
 
     //Metodo Equals

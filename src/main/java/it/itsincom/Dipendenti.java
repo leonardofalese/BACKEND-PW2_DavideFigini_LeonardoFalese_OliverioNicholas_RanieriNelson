@@ -3,14 +3,13 @@ package it.itsincom;
 import java.time.LocalDate;
 
 //Inizializzazione parametri
-public class Dipendenti {    
-    private String categoria;                                                          
+public class Dipendenti implements Comparable<Dipendenti> {
+    private String categoria;
     private String codiceFiscale;
     private String nome;
     private String cognome;
     private LocalDate dataAssunzione;
     private int stipendio;
-    
 
     public Dipendenti(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione) {
         this.categoria = categoria;
@@ -20,7 +19,7 @@ public class Dipendenti {
         this.dataAssunzione = dataAssunzione;
     }
 
-    //Getter e Setter
+    // Getter e Setter
     public String getCodiceFiscale() {
         return codiceFiscale;
     }
@@ -69,15 +68,14 @@ public class Dipendenti {
         this.categoria = categoria;
     }
 
-    //Metodo ToString
+    // Metodo ToString
     @Override
     public String toString() {
         return "\n[categoria=" + categoria + ", codiceFiscale=" + codiceFiscale + ", nome=" + nome
                 + ", cognome=" + cognome + ", dataAssunzione=" + dataAssunzione + ", stipendio=" + stipendio;
     }
-    
 
-    //Metodo Equals
+    // Metodo Equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -117,4 +115,8 @@ public class Dipendenti {
         return true;
     }
 
+    @Override
+    public int compareTo(Dipendenti o) {
+        return this.cognome.compareTo(o.cognome);
+    }
 }
