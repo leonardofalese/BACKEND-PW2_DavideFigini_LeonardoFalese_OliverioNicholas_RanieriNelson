@@ -12,9 +12,10 @@ public final class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("C:\\PW2\\pw2\\elenco dipendenti.txt"));
+        Scanner in = new Scanner(new File("C:\\PW2\\BACKEND PW2\\elenco dipendenti.txt"));
         ArrayList<Dipendenti> dipendenti = new ArrayList<>();
         Azienda azienda = new Azienda(dipendenti);
+        String personale;
         while(in.hasNextLine()) {
             String pezzi[] = in.nextLine().split(";");
             if(pezzi[0].equals("dirigente")) {
@@ -31,6 +32,12 @@ public final class Main {
         System.out.print("////Ordine alfabetico dei dipendenti per cognome////");
         System.out.println(azienda.toString());
 
+        try {
+            System.out.print("inserisci il personale da cercare (dirigente/managere/tecnico): ");
+            personale = in.next();
+        } catch (Exception e) {
+            System.out.println("Erroe di inserimento");
+        }
         in.close();
     }
 }
