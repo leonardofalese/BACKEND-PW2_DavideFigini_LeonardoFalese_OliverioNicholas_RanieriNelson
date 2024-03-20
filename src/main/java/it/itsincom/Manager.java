@@ -1,6 +1,7 @@
 package it.itsincom;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 //Inizializzazione parametri
 public class Manager extends Dipendenti {
@@ -13,6 +14,10 @@ public class Manager extends Dipendenti {
             super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
             this.riferimento = riferimento;
             this.settore = settore;
+    }
+
+    public Manager(){
+
     }
 
     //Getter e Setter
@@ -59,6 +64,23 @@ public class Manager extends Dipendenti {
         } else if (!settore.equals(other.settore))
             return false;
         return true;
+    }
+
+    public void stipendioManager(ArrayList<Dipendenti> d){
+        for (Dipendenti dipendente : d) {
+            if(dipendente instanceof Manager){
+                Manager manager = (Manager) dipendente;
+                manager.stipendio += 2000;
+                for (Dipendenti dipendente2 : d) {
+                    if(dipendente2 instanceof Tecnici){
+                        Tecnici tecnico = (Tecnici) dipendente2;
+                        if(tecnico.getCodiceFiscale().equals(manager.getCodiceFiscale())){
+                            manager.stipendio += tecnico.getStipendio() * 0.1;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

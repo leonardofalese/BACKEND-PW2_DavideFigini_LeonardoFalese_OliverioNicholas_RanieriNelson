@@ -1,6 +1,7 @@
 package it.itsincom;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 //Inizializzazione parametri
 public class Dirigenti extends Dipendenti {
@@ -11,6 +12,10 @@ public class Dirigenti extends Dipendenti {
         String nomeDivisione) {
             super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
             this.nomeDivisione = nomeDivisione;
+    }
+
+    public Dirigenti(){
+
     }
     
     //Getter e Setter
@@ -44,6 +49,20 @@ public class Dirigenti extends Dipendenti {
         } else if (!nomeDivisione.equals(other.nomeDivisione))
             return false;
         return true;
+    }
+
+    public void stipendioDirigente(ArrayList<Dipendenti> d){
+        for(Dipendenti dipendente : d){
+            if(dipendente instanceof Dirigenti){
+                Dirigenti dirigente = (Dirigenti) dipendente;
+                dirigente.stipendio += 2500;
+                for (Dipendenti dipendente2 : d) {
+                    if(!(dipendente2 instanceof Dirigenti)){
+                        dirigente.stipendio += dipendente.getStipendio() * 0.1;
+                    }
+                }
+            }
+        }
     }
      
 }

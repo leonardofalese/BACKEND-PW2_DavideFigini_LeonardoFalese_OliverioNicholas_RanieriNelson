@@ -13,6 +13,7 @@ public class Tecnici extends Dipendenti{
             super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
             this.riferimento = riferimento;
             this.ambito = ambito;
+            this.stipendio = stipendioTecnico();
     }
     
     //Getter e Setter
@@ -59,6 +60,15 @@ public class Tecnici extends Dipendenti{
         } else if (!ambito.equals(other.ambito))
             return false;
         return true;
+    }
+
+    public int stipendioTecnico(){
+        long anzianita = LocalDate.now().getYear() - getDataAssunzione().getYear();
+        if(anzianita < 10){
+            return stipendio += 1500;
+        }else{
+            return stipendio += 1600;
+        }
     }
 
 }

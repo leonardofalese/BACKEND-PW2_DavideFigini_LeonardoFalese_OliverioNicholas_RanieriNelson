@@ -31,6 +31,14 @@ public class Azienda {
         return "\nAzienda [nome dell'azienda=" + nomeAzienda + " \nDipendenti=" + dipendenti + "]\n";
     }
 
+    public String stipendi(ArrayList<Dipendenti> d){
+        String s = "";
+        for (Dipendenti dipendente : d) {
+            s += "nome: " + dipendente.getNome() + ", " + "cognome: " + dipendente.getCognome() + ", " + "codice fiscale: " + dipendente.getCodiceFiscale() + ", " + "stipendio: " + dipendente.getStipendio() + "\n";
+        }
+        return s;
+    }
+
     //Metodo Equals
     @Override
     public boolean equals(Object obj) {

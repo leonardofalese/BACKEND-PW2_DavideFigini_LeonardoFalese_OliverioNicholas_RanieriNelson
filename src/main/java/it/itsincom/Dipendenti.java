@@ -9,7 +9,7 @@ public class Dipendenti implements Comparable<Dipendenti> {
     private String nome;
     private String cognome;
     private LocalDate dataAssunzione;
-    private int stipendio;
+    protected int stipendio = 0;
 
     public Dipendenti(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione) {
         this.categoria = categoria;
@@ -17,6 +17,10 @@ public class Dipendenti implements Comparable<Dipendenti> {
         this.nome = nome;
         this.cognome = cognome;
         this.dataAssunzione = dataAssunzione;
+    }
+
+    public Dipendenti(){
+
     }
 
     // Getter e Setter
@@ -72,7 +76,7 @@ public class Dipendenti implements Comparable<Dipendenti> {
     @Override
     public String toString() {
         return "\n[categoria=" + categoria + ", codiceFiscale=" + codiceFiscale + ", nome=" + nome
-                + ", cognome=" + cognome + ", dataAssunzione=" + dataAssunzione + ", stipendio=" + stipendio;
+                + ", cognome=" + cognome + ", dataAssunzione=" + dataAssunzione;
     }
 
     // Metodo Equals
