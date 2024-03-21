@@ -62,4 +62,24 @@ public class Azienda {
         return true;
     }
 
+    public void ripetizioneDip(Dipendenti d)throws Exception{
+        for (Dipendenti dipendente : dipendenti) {
+            if(dipendente.getCodiceFiscale().equals(d.getCodiceFiscale())){
+                throw new Exception("Il dipendenre " + d.getNome() + " è già presente perché il CodFisc: " + d.getCodiceFiscale() + " si ripete");
+            }
+        }
+        if(d instanceof Tecnici){
+            Tecnici tecnico = (Tecnici) d;
+            dipendenti.add(tecnico);
+        }
+        if(d instanceof Manager){
+            Manager manager = (Manager) d;
+            dipendenti.add(manager);
+        }
+        if(d instanceof Dirigenti){
+            Dirigenti dirigente = (Dirigenti) d;
+            dipendenti.add(dirigente);
+        }
+    }
+
 }

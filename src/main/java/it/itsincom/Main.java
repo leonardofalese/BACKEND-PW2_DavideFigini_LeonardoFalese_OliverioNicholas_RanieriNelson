@@ -11,7 +11,7 @@ public final class Main {
     private Main() {
     }
 
-    public static void main(String[] args) throws java.io.FileNotFoundException {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(new File("C:\\PW2\\BACKEND PW2\\elenco dipendenti.txt"));
         Scanner in2 = new Scanner(System.in);
         ArrayList<Dipendenti> dipendenti = new ArrayList<>();
@@ -21,13 +21,13 @@ public final class Main {
 
             String pezzi[] = in.nextLine().split(";");
             if (pezzi[0].equals("dirigente")) {
-                dipendenti.add(
+                azienda.ripetizioneDip(
                         new Dirigenti(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5]));
             } else if (pezzi[0].equals("manager")) {
-                dipendenti.add(new Manager(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
+                azienda.ripetizioneDip(new Manager(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
                         pezzi[6]));
             } else if (pezzi[0].equals("tecnico")) {
-                dipendenti.add(new Tecnici(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
+                azienda.ripetizioneDip(new Tecnici(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
                         pezzi[6]));
             }
         }
@@ -73,3 +73,7 @@ public final class Main {
         }
     }
 }
+
+
+
+//BCDE29013
