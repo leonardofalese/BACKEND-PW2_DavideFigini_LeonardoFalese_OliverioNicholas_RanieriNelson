@@ -1,11 +1,16 @@
 package it.itsincom;
 
+//librerie 
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public final class Main {
     private Main() {
@@ -17,6 +22,9 @@ public final class Main {
         ArrayList<Dipendenti> dipendenti = new ArrayList<>();
         Azienda azienda = new Azienda(dipendenti);
         String p;
+
+        // ciclo while per il popolmento dell'ArrayList letto dal file "elenco
+        // dipendenti.txt"
         while (in.hasNextLine()) {
 
             String pezzi[] = in.nextLine().split(";");
@@ -24,11 +32,13 @@ public final class Main {
                 azienda.ripetizioneDip(
                         new Dirigenti(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5]));
             } else if (pezzi[0].equals("manager")) {
-                azienda.ripetizioneDip(new Manager(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
-                        pezzi[6]));
+                azienda.ripetizioneDip(
+                        new Manager(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
+                                pezzi[6]));
             } else if (pezzi[0].equals("tecnico")) {
-                azienda.ripetizioneDip(new Tecnici(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
-                        pezzi[6]));
+                azienda.ripetizioneDip(
+                        new Tecnici(pezzi[0], pezzi[1], pezzi[2], pezzi[3], LocalDate.parse(pezzi[4]), pezzi[5],
+                                pezzi[6]));
             }
         }
         System.out.print("////Lettura file////");
@@ -41,8 +51,12 @@ public final class Main {
 
         System.out.print("Che categoria vuoi ordinare?: ");
         p = in2.next();
-        ordinamentoPerAssunzione(dipendenti, p);
-
+        controllo(p);
+        if(controllo(p) == true){
+            ordinamentoPerAssunzione(dipendenti, p);
+        }else{
+            System.out.println("Dipendente non trovato :(");
+        }
 
         Manager manager = new Manager();
         manager.stipendioManager(azienda.getDipendenti());
@@ -53,18 +67,20 @@ public final class Main {
         System.out.println("\n\n////Nome, Cognome, CodFiscale e stipendio dei dipendenti////");
         System.out.println(azienda.stipendi(azienda.getDipendenti()));
 
+        creazioneFileJson(azienda.getDipendenti());
+
         in.close();
         in2.close();
     }
 
-    public static void ordinamentoPerAssunzione(ArrayList<Dipendenti> d, String s){
+    public static void ordinamentoPerAssunzione(ArrayList<Dipendenti> d, String s) {
         // ordinamento per data di assunzione
         d.sort(new Comparator<Dipendenti>() {
             public int compare(Dipendenti o1, Dipendenti o2) {
                 return o1.getDataAssunzione().compareTo(o2.getDataAssunzione());
             }
         });
-        // estrarre solo quelli della categoria passata come parametro
+        // estrae solo quelli della categoria passata come parametro
         System.out.print("\n////elenco dipendenti in ordine di assunzione dei " + s + "//// \n Dipendenti=[");
         for (Dipendenti dipendenti : d) {
             if (dipendenti.getCategoria().equals(s)) {
@@ -72,8 +88,32 @@ public final class Main {
             }
         }
     }
+
+    // metodo per la creazione e popolamento del file "dipendenti.json"
+    public static void creazioneFileJson(ArrayList<Dipendenti> d) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(d);
+        try {
+            FileWriter writer = new FileWriter("dipendenti.json");
+            writer.write(json);
+            writer.close();
+            System.out.println("Il file JSON è stato creato correttamente.");
+        } catch (IOException e) {
+            System.out.println("Si è verificato un errore durante la scrittura del file JSON.");
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean controllo(String s) throws Exception{
+        boolean prova = false;
+        try {
+            if(s.equalsIgnoreCase("tecnico") || s.equalsIgnoreCase("manager") || s.equalsIgnoreCase("dirigente")){
+                prova = true;
+            }
+        } catch (Exception e) {
+            prova = false;
+        }
+
+        return prova;
+    }
 }
-
-
-
-//BCDE29013

@@ -7,12 +7,12 @@ public class Azienda {
     private String nomeAzienda = "Recruit ITSolutions";
     private ArrayList<Dipendenti> dipendenti;
 
-    //Costruttore
+    // Costruttore
     public Azienda(ArrayList<Dipendenti> dipendenti) {
         this.dipendenti = dipendenti;
     }
 
-    //Getter e Setter
+    // Getter e Setter
     public String getNomeAzienda() {
         return nomeAzienda;
     }
@@ -25,21 +25,24 @@ public class Azienda {
         this.dipendenti = dipendenti;
     }
 
-    //Metodo ToString
+    // Metodo ToString
     @Override
     public String toString() {
         return "\nAzienda [nome dell'azienda=" + nomeAzienda + " \nDipendenti=" + dipendenti + "]\n";
     }
 
-    public String stipendi(ArrayList<Dipendenti> d){
+    // metodo per visualizzare gli stipendi dei dipendenti
+    public String stipendi(ArrayList<Dipendenti> d) {
         String s = "";
         for (Dipendenti dipendente : d) {
-            s += "nome: " + dipendente.getNome() + ", " + "cognome: " + dipendente.getCognome() + ", " + "codice fiscale: " + dipendente.getCodiceFiscale() + ", " + "stipendio: " + dipendente.getStipendio() + "\n";
+            s += "nome: " + dipendente.getNome() + ", " + "cognome: " + dipendente.getCognome() + ", "
+                    + "codice fiscale: " + dipendente.getCodiceFiscale() + ", " + "stipendio: "
+                    + dipendente.getStipendio() + "\n";
         }
         return s;
     }
 
-    //Metodo Equals
+    // Metodo Equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -62,21 +65,23 @@ public class Azienda {
         return true;
     }
 
-    public void ripetizioneDip(Dipendenti d)throws Exception{
+    // metodo per la verificare se ci sono dipendenti con CodFisc identico
+    public void ripetizioneDip(Dipendenti d) throws Exception {
         for (Dipendenti dipendente : dipendenti) {
-            if(dipendente.getCodiceFiscale().equals(d.getCodiceFiscale())){
-                throw new Exception("Il dipendenre " + d.getNome() + " è già presente perché il CodFisc: " + d.getCodiceFiscale() + " si ripete");
+            if (dipendente.getCodiceFiscale().equals(d.getCodiceFiscale())) {
+                throw new Exception("Il dipendenre " + d.getNome() + " è già presente perché il CodFisc: "
+                        + d.getCodiceFiscale() + " si ripete");
             }
         }
-        if(d instanceof Tecnici){
+        if (d instanceof Tecnici) {
             Tecnici tecnico = (Tecnici) d;
             dipendenti.add(tecnico);
         }
-        if(d instanceof Manager){
+        if (d instanceof Manager) {
             Manager manager = (Manager) d;
             dipendenti.add(manager);
         }
-        if(d instanceof Dirigenti){
+        if (d instanceof Dirigenti) {
             Dirigenti dirigente = (Dirigenti) d;
             dipendenti.add(dirigente);
         }

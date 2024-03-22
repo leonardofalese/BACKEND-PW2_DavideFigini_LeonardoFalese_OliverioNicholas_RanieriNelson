@@ -19,7 +19,8 @@ public class Dipendenti implements Comparable<Dipendenti> {
         this.dataAssunzione = dataAssunzione;
     }
 
-    public Dipendenti(){
+    // costruttore di default
+    public Dipendenti() {
 
     }
 
@@ -119,6 +120,7 @@ public class Dipendenti implements Comparable<Dipendenti> {
         return true;
     }
 
+    // metodo per ordinamento dei dipendenti (per cognome)
     @Override
     public int compareTo(Dipendenti o) {
         return this.cognome.compareTo(o.cognome);

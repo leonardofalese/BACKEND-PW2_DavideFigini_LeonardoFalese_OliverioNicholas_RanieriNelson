@@ -8,19 +8,20 @@ public class Manager extends Dipendenti {
     private String riferimento;
     private String settore;
 
-    //Costruttore
+    // Costruttore
     public Manager(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione,
-        String riferimento, String settore) {
-            super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
-            this.riferimento = riferimento;
-            this.settore = settore;
+            String riferimento, String settore) {
+        super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
+        this.riferimento = riferimento;
+        this.settore = settore;
     }
 
-    public Manager(){
+    // costruttore di default
+    public Manager() {
 
     }
 
-    //Getter e Setter
+    // Getter e Setter
     public String getSettore() {
         return settore;
     }
@@ -37,13 +38,13 @@ public class Manager extends Dipendenti {
         this.riferimento = riferimento;
     }
 
-    //Metodo ToString
+    // Metodo ToString
     @Override
     public String toString() {
         return super.toString() + ", settore=" + settore + ", riferimento=" + riferimento + "]";
     }
 
-    //Metodo Equals
+    // Metodo Equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -66,15 +67,16 @@ public class Manager extends Dipendenti {
         return true;
     }
 
-    public void stipendioManager(ArrayList<Dipendenti> d){
+    // calcolo per il calcolo dello stipendio
+    public void stipendioManager(ArrayList<Dipendenti> d) {
         for (Dipendenti dipendente : d) {
-            if(dipendente instanceof Manager){
+            if (dipendente instanceof Manager) {
                 Manager manager = (Manager) dipendente;
                 manager.stipendio += 2000;
                 for (Dipendenti dipendente2 : d) {
-                    if(dipendente2 instanceof Tecnici){
+                    if (dipendente2 instanceof Tecnici) {
                         Tecnici tecnico = (Tecnici) dipendente2;
-                        if(tecnico.getCodiceFiscale().equals(manager.getCodiceFiscale())){
+                        if (tecnico.getCodiceFiscale().equals(manager.getCodiceFiscale())) {
                             manager.stipendio += tecnico.getStipendio() * 0.1;
                         }
                     }

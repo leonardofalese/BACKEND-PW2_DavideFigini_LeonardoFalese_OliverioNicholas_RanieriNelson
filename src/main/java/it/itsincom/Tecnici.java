@@ -3,20 +3,21 @@ package it.itsincom;
 import java.time.LocalDate;
 
 //Inizializzazione parametri
-public class Tecnici extends Dipendenti{
+public class Tecnici extends Dipendenti {
     private String riferimento;
     private String ambito;
 
-    //Costruttore
-    public Tecnici(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione, String riferimento, 
-        String ambito) {
-            super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
-            this.riferimento = riferimento;
-            this.ambito = ambito;
-            this.stipendio = stipendioTecnico();
+    // Costruttore
+    public Tecnici(String categoria, String codiceFiscale, String nome, String cognome, LocalDate dataAssunzione,
+            String riferimento,
+            String ambito) {
+        super(categoria, codiceFiscale, nome, cognome, dataAssunzione);
+        this.riferimento = riferimento;
+        this.ambito = ambito;
+        this.stipendio = stipendioTecnico();
     }
-    
-    //Getter e Setter
+
+    // Getter e Setter
     public String getAmbito() {
         return ambito;
     }
@@ -33,13 +34,13 @@ public class Tecnici extends Dipendenti{
         this.riferimento = riferimento;
     }
 
-    //Metodo ToString
+    // Metodo ToString
     @Override
     public String toString() {
         return super.toString() + ", ambito=" + ambito + ", riferimento=" + riferimento + "]";
     }
 
-    //Metodo Equals
+    // Metodo Equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -62,11 +63,12 @@ public class Tecnici extends Dipendenti{
         return true;
     }
 
-    public int stipendioTecnico(){
+    // metodo per il calcolo dello stioendio
+    public int stipendioTecnico() {
         long anzianita = LocalDate.now().getYear() - getDataAssunzione().getYear();
-        if(anzianita < 10){
+        if (anzianita < 10) {
             return stipendio += 1500;
-        }else{
+        } else {
             return stipendio += 1600;
         }
     }
