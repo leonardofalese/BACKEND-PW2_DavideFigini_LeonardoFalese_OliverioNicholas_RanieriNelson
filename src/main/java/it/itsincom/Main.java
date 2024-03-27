@@ -5,7 +5,6 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -58,11 +57,8 @@ public final class Main {
             System.out.println("Dipendente non trovato :(");
         }
 
-        Manager manager = new Manager();
-        manager.stipendioManager(azienda.getDipendenti());
-
-        Dirigenti dirigenti = new Dirigenti();
-        dirigenti.stipendioDirigente(azienda.getDipendenti());
+        azienda.stipendioManager(azienda.getDipendenti());
+        azienda.stipendioDirigente(azienda.getDipendenti());
 
         System.out.println("\n\n////Nome, Cognome, CodFiscale e stipendio dei dipendenti////");
         System.out.println(azienda.stipendi(azienda.getDipendenti()));
@@ -75,11 +71,7 @@ public final class Main {
 
     public static void ordinamentoPerAssunzione(ArrayList<Dipendenti> d, String s) {
         // ordinamento per data di assunzione
-        d.sort(new Comparator<Dipendenti>() {
-            public int compare(Dipendenti o1, Dipendenti o2) {
-                return o1.getDataAssunzione().compareTo(o2.getDataAssunzione());
-            }
-        });
+        d.sort(new ComparatorData());
         // estrae solo quelli della categoria passata come parametro
         System.out.print("\n////elenco dipendenti in ordine di assunzione dei " + s + "//// \n Dipendenti=[");
         for (Dipendenti dipendenti : d) {

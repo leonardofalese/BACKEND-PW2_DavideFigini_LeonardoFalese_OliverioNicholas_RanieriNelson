@@ -87,4 +87,37 @@ public class Azienda {
         }
     }
 
+    // calcolo per il calcolo dello stipendio
+    public void stipendioManager(ArrayList<Dipendenti> d) {
+        for (Dipendenti dipendente : d) {
+            if (dipendente instanceof Manager) {
+                Manager manager = (Manager) dipendente;
+                manager.stipendio += 2000;
+                for (Dipendenti dipendente2 : d) {
+                    if (dipendente2 instanceof Tecnici) {
+                        Tecnici tecnico = (Tecnici) dipendente2;
+                        if (tecnico.getCodiceFiscale().equals(manager.getCodiceFiscale())) {
+                            manager.stipendio += tecnico.getStipendio() * 0.1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // metodo per il calcolo dello stipendio
+    public void stipendioDirigente(ArrayList<Dipendenti> d) {
+        for (Dipendenti dipendente : d) {
+            if (dipendente instanceof Dirigenti) {
+                Dirigenti dirigente = (Dirigenti) dipendente;
+                dirigente.stipendio += 2500;
+                for (Dipendenti dipendente2 : d) {
+                    if (!(dipendente2 instanceof Dirigenti)) {
+                        dirigente.stipendio += dipendente.getStipendio() * 0.1;
+                    }
+                }
+            }
+        }
+    }
+
 }
